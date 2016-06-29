@@ -6,21 +6,20 @@
 
 namespace ZF\OAuth2\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use ZF\OAuth2\Adapter\PdoAdapter;
 use ZF\OAuth2\Controller\Exception;
 
 class PdoAdapterFactory implements FactoryInterface
 {
     /**
-     * @param ServiceLocatorInterface $services
-     * @throws \ZF\OAuth2\Controller\Exception\RuntimeException
-     * @return \ZF\OAuth2\Adapter\PdoAdapter
+     * {@inheritdoc}
+     * @return PdoAdapter
      */
-    public function createService(ServiceLocatorInterface $services)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $config = $services->get('Config');
+        $config = $container->get('Config');
 
         if (!isset($config['zf-oauth2']['db']) || empty($config['zf-oauth2']['db'])) {
             throw new Exception\RuntimeException(

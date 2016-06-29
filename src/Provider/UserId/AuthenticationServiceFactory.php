@@ -6,22 +6,22 @@
 
 namespace ZF\OAuth2\Provider\UserId;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class AuthenticationServiceFactory implements FactoryInterface
 {
     /**
-     * @param ServiceLocatorInterface $services
+     * {@inheritdoc}
      * @return AuthenticationService
      */
-    public function createService(ServiceLocatorInterface $services)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $config = $services->get('Config');
+        $config = $container->get('Config');
 
-        if ($services->has('Zend\Authentication\AuthenticationService')) {
+        if ($container->has('Zend\Authentication\AuthenticationService')) {
             return new AuthenticationService(
-                $services->get('Zend\Authentication\AuthenticationService'),
+                $container->get('Zend\Authentication\AuthenticationService'),
                 $config
             );
         }

@@ -52,7 +52,7 @@ class MongoAdapterFactoryTest extends AbstractHttpControllerTestCase
     public function testExceptionThrownWhenMissingMongoCredentials()
     {
         $this->services->setService('Config', []);
-        $adapter = $this->factory->createService($this->services);
+        $adapter = ($this->factory)($this->services, '');
 
         $this->assertInstanceOf('ZF\OAuth2\Adapter\PdoAdapter', $adapter);
     }
@@ -68,7 +68,7 @@ class MongoAdapterFactoryTest extends AbstractHttpControllerTestCase
             ]
         ]);
 
-        $adapter = $this->factory->createService($this->services);
+        $adapter = ($this->factory)($this->services, '');
         $this->assertInstanceOf('ZF\OAuth2\Adapter\MongoAdapter', $adapter);
     }
 
@@ -84,7 +84,7 @@ class MongoAdapterFactoryTest extends AbstractHttpControllerTestCase
         $mock = $this->getMock('\MongoDB', [], [], '', false);
         $this->services->setService('testdb', $mock);
 
-        $adapter = $this->factory->createService($this->services);
+        $adapter = ($this->factory)($this->services, '');
         $this->assertInstanceOf('ZF\OAuth2\Adapter\MongoAdapter', $adapter);
     }
 
@@ -103,7 +103,7 @@ class MongoAdapterFactoryTest extends AbstractHttpControllerTestCase
         $mock = $this->getMock('\MongoDB', [], [], '', false);
         $this->services->setService('testdb', $mock);
 
-        $adapter = $this->factory->createService($this->services);
+        $adapter = ($this->factory)($this->services, '');
         $this->assertInstanceOf('ZF\OAuth2\Adapter\MongoAdapter', $adapter);
 
         $r = new ReflectionObject($adapter);

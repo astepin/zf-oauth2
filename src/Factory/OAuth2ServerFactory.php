@@ -5,20 +5,20 @@
  */
 namespace ZF\OAuth2\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class OAuth2ServerFactory implements FactoryInterface
 {
 
     /**
-     * @param ServiceLocatorInterface $services
-     * @return OAuth2\Server
+     * {@inheritdoc}
+     * @return OAuth2ServerInstanceFactory
      */
-    public function createService(ServiceLocatorInterface $services)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $config = $services->get('Config');
+        $config = $container->get('Config');
         $config = isset($config['zf-oauth2']) ? $config['zf-oauth2'] : [];
-        return new OAuth2ServerInstanceFactory($config, $services);
+        return new OAuth2ServerInstanceFactory($config, $container);
     }
 }

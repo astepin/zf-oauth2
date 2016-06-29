@@ -14,7 +14,6 @@ use RuntimeException;
 use Zend\Http\PhpEnvironment\Request as PhpEnvironmentRequest;
 use Zend\Http\Request as HttpRequest;
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use ZF\ApiProblem\ApiProblem;
 use ZF\ApiProblem\ApiProblemResponse;
 use ZF\ContentNegotiation\ViewModel;
@@ -46,7 +45,7 @@ class AuthController extends AbstractActionController
     /**
      * Constructor
      *
-     * @param OAuth2Server $server
+     * @param $serverFactory
      * @param UserIdProviderInterface $userIdProvider
      */
     public function __construct($serverFactory, UserIdProviderInterface $userIdProvider)

@@ -6,21 +6,21 @@
 
 namespace ZF\OAuth2\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use ZF\OAuth2\Adapter\IbmDb2Adapter;
 use ZF\OAuth2\Controller\Exception;
 
 class IbmDb2AdapterFactory implements FactoryInterface
 {
     /**
-     * @param ServiceLocatorInterface $services
+     * {@inheritdoc}
      * @return IbmDb2Adapter
      * @throws Exception\RuntimeException
      */
-    public function createService(ServiceLocatorInterface $services)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $config = $services->get('Config');
+        $config = $container->get('Config');
 
         if (! isset($config['zf-oauth2']['db']) || empty($config['zf-oauth2']['db'])) {
             throw new Exception\RuntimeException(

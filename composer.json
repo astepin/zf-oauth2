@@ -1,6 +1,6 @@
 {
     "name": "zfcampus/zf-oauth2",
-    "description": "ZF2 module for implementing an OAuth2 server",
+    "description": "ZF3 module for implementing an OAuth2 server",
     "license": "BSD-3-Clause",
     "keywords": [
         "api",
@@ -9,7 +9,15 @@
         "zf2"
     ],
     "repositories": [
-        { "type": "composer", "url": "https://packages.zendframework.com/" }
+        { "type": "composer", "url": "https://packages.zendframework.com/" },
+        {
+            "type": "vcs",
+            "url": "https://github.com/astepin/zf-api-problem"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/astepin/zf-content-negotiation"
+        }
     ],
     "extra": {
         "branch-alias": {
@@ -18,28 +26,28 @@
         }
     },
     "require": {
-        "php": ">=5.5",
+        "php": ">=5.6",
         "bshaffer/oauth2-server-php": "~1.7",
-        "zendframework/zend-crypt": "~2.3",
-        "zendframework/zend-http": "~2.3",
-        "zendframework/zend-mvc": "~2.3",
-        "zendframework/zend-servicemanager": "~2.3",
-        "zfcampus/zf-api-problem": "~1.0",
-        "zfcampus/zf-content-negotiation": "~1.0"
+        "zendframework/zend-crypt": "~3.0",
+        "zendframework/zend-http": "~2.5",
+        "zendframework/zend-mvc": "~3.0",
+        "zendframework/zend-servicemanager": "~3.1",
+        "zfcampus/zf-api-problem": "dev-master",
+        "zfcampus/zf-content-negotiation": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.7",
         "squizlabs/php_codesniffer": "^2.3.1",
-        "zendframework/zend-config": "~2.3",
-        "zendframework/zend-form": "~2.3",
-        "zendframework/zend-loader": "~2.3",
-        "zendframework/zend-log": "~2.3",
-        "zendframework/zend-modulemanager": "~2.3",
-        "zendframework/zend-serializer": "~2.3",
-        "zendframework/zend-test": "~2.3",
-        "zendframework/zend-authentication": "~2.3",
-        "zendframework/zend-i18n": "~2.3",
-        "zendframework/zend-db": "~2.3",
+        "zendframework/zend-config": "~2.6",
+        "zendframework/zend-form": "~2.9",
+        "zendframework/zend-loader": "~2.5",
+        "zendframework/zend-log": "~2.9",
+        "zendframework/zend-modulemanager": "~2.7",
+        "zendframework/zend-serializer": "~2.8",
+        "zendframework/zend-test": "~3.0",
+        "zendframework/zend-authentication": "~2.5",
+        "zendframework/zend-i18n": "~2.7.3",
+        "zendframework/zend-db": "~2.8",
         "mockery/mockery": "0.9.*"
     },
     "autoload": {

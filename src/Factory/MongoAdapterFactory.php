@@ -6,9 +6,9 @@
 
 namespace ZF\OAuth2\Factory;
 
+use Interop\Container\ContainerInterface;
 use MongoClient;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use ZF\OAuth2\Adapter\MongoAdapter;
 use ZF\OAuth2\Controller\Exception;
 
@@ -21,20 +21,19 @@ use ZF\OAuth2\Controller\Exception;
 class MongoAdapterFactory implements FactoryInterface
 {
     /**
-     * @param ServiceLocatorInterface $services
-     * @throws Exception\RuntimeException
+     * {@inheritdoc}
      * @return MongoAdapter
      */
-    public function createService(ServiceLocatorInterface $services)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $config  = $services->get('Config');
-        return new MongoAdapter($this->getMongoDb($services), $this->getOauth2ServerConfig($config));
+        $config  = $container->get('Config');
+        return new MongoAdapter($this->getMongoDb($container), $this->getOauth2ServerConfig($config));
     }
 
     /**
      * Get the mongo database
      *
-     * @param ServiceLocatorInterface $services
+     * @param ContainerInterface $services
      * @return \MongoDB
      */
     protected function getMongoDb($services)
@@ -64,6 +63,7 @@ class MongoAdapterFactory implements FactoryInterface
     /**
      * Retrieve oauth2-server-php configuration
      *
+     * @param $config
      * @return array
      */
     protected function getOauth2ServerConfig($config)

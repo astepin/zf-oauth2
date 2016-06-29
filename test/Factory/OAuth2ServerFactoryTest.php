@@ -51,7 +51,7 @@ class OAuth2ServerFactoryTest extends AbstractHttpControllerTestCase
     public function testExceptionThrownOnMissingStorageClass()
     {
         $this->services->setService('Config', []);
-        $factory = $this->factory->createService($this->services);
+        $factory = ($this->factory)($this->services, '');
         $factory();
     }
 
@@ -87,7 +87,7 @@ class OAuth2ServerFactoryTest extends AbstractHttpControllerTestCase
         $expectedService->addGrantType(new RefreshToken($adapter));
         $expectedService->addGrantType(new JwtBearer($adapter, ''));
 
-        $service = $this->factory->createService($this->services);
+        $service = ($this->factory)($this->services, '');
         $this->assertInstanceOf('ZF\OAuth2\Factory\OAuth2ServerInstanceFactory', $service);
         $server = $service();
         $this->assertInstanceOf('OAuth2\Server', $server);
@@ -129,7 +129,7 @@ class OAuth2ServerFactoryTest extends AbstractHttpControllerTestCase
         $expectedService->addGrantType(new RefreshToken($adapter));
         $expectedService->addGrantType(new JwtBearer($adapter, ''));
 
-        $service = $this->factory->createService($this->services);
+        $service = ($this->factory)($this->services, '');
         $this->assertInstanceOf('ZF\OAuth2\Factory\OAuth2ServerInstanceFactory', $service);
         $server = $service();
         $this->assertInstanceOf('OAuth2\Server', $server);
@@ -174,7 +174,7 @@ class OAuth2ServerFactoryTest extends AbstractHttpControllerTestCase
         $expectedService->addGrantType(new RefreshToken($adapter));
         $expectedService->addGrantType(new JwtBearer($adapter, ''));
 
-        $service = $this->factory->createService($this->services);
+        $service = ($this->factory)($this->services, '');
         $this->assertInstanceOf('ZF\OAuth2\Factory\OAuth2ServerInstanceFactory', $service);
         $server = $service();
         $this->assertInstanceOf('OAuth2\Server', $server);
@@ -247,7 +247,7 @@ class OAuth2ServerFactoryTest extends AbstractHttpControllerTestCase
         $expectedService->addGrantType(new RefreshToken($storage['refresh_token']));
         $expectedService->addGrantType(new JwtBearer($storage['jwt_bearer'], ''));
 
-        $service = $this->factory->createService($this->services);
+        $service = ($this->factory)($this->services, '');
         $this->assertInstanceOf('ZF\OAuth2\Factory\OAuth2ServerInstanceFactory', $service);
         $server = $service();
         $this->assertInstanceOf('OAuth2\Server', $server);
@@ -280,7 +280,7 @@ class OAuth2ServerFactoryTest extends AbstractHttpControllerTestCase
 
         $expectedService->addGrantType(new UserCredentials($adapter));
         $expectedService->addGrantType(new RefreshToken($adapter));
-        $service = $this->factory->createService($this->services);
+        $service = ($this->factory)($this->services, '');
         $this->assertInstanceOf('ZF\OAuth2\Factory\OAuth2ServerInstanceFactory', $service);
         $server = $service();
         $this->assertInstanceOf('OAuth2\Server', $server);
@@ -304,7 +304,7 @@ class OAuth2ServerFactoryTest extends AbstractHttpControllerTestCase
             ],
         ]);
 
-        $factory = $this->factory->createService($this->services);
+        $factory = ($this->factory)($this->services, '');
         $server  = $factory();
         $this->assertSame($server, $factory());
     }

@@ -103,6 +103,7 @@ class IbmDb2Adapter extends OAuth2Db2
      * @param string $clientId
      * @param null|string $clientSecret
      * @return bool
+     * @throws \Exception
      */
     public function checkClientCredentials($clientId, $clientSecret = null)
     {
