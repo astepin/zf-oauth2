@@ -8,7 +8,7 @@ return array(
     'router' => array(
         'routes' => array(
             'oauth' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Zend\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/oauth',
                     'defaults' => array(
@@ -19,7 +19,7 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'authorize' => array(
-                        'type' => 'Zend\Mvc\Router\Http\Literal',
+                        'type' => 'Zend\Router\Http\Literal',
                         'options' => array(
                             'route' => '/authorize',
                             'defaults' => array(
@@ -28,7 +28,7 @@ return array(
                         ),
                     ),
                     'resource' => array(
-                        'type' => 'Zend\Mvc\Router\Http\Literal',
+                        'type' => 'Zend\Router\Http\Literal',
                         'options' => array(
                             'route' => '/resource',
                             'defaults' => array(
@@ -37,7 +37,7 @@ return array(
                         ),
                     ),
                     'code' => array(
-                        'type' => 'Zend\Mvc\Router\Http\Literal',
+                        'type' => 'Zend\Router\Http\Literal',
                         'options' => array(
                             'route' => '/receivecode',
                             'defaults' => array(
